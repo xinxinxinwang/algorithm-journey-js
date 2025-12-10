@@ -2,7 +2,7 @@
 function findNumber(arr, num) {
     const N = 100//随机生成的数组的最大长度
     const V = 1000//随机生成的数组的最大值
-    const testTime = 5000
+    const testTime = 50000
     console.log("测试开始")
     for (let i = 0; i < testTime; i++) {
         const arrLength = Math.floor(Math.random() * N)
@@ -13,7 +13,7 @@ function findNumber(arr, num) {
         const num = Math.floor(Math.random() * V)
         // console.log(`测试查找值：${num}`)
         // console.log(`right查找结果：${right(orderArr, num)}`)
-        // console.log(`exist查找结果：${findLeft(orderArr, num)}`)
+        // console.log(`exist查找结果：${findRight(orderArr, num)}`)
         if (right(orderArr, num) != findRight(orderArr, num)) {
             console.log("出错了")
         }
@@ -32,9 +32,9 @@ function randomArray(len, max) {
 
 // 暴力法 
 function right(arr, num) {
-    for (const [index, element] of arr.entries()) {
-        if (element <= num) {
-            return index
+    for (let i = arr.length; i >= 0; i--) {
+        if (arr[i] <=num) {
+            return i
         }
     }
     return -1
@@ -48,12 +48,12 @@ function findRight(arr, num) {
         m = Math.floor(l + (r - l) / 2)
         if (arr[m] <= num) {
             ans = m
-            r = m - 1 
-        } else {
             l = m + 1
+        } else {
+            r = m - 1
         }
     }
     return ans
 }
-
+// findRight([4,5,7,9],9)
 findNumber()

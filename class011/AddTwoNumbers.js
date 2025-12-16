@@ -23,7 +23,7 @@ var addTwoNumbers = function (l1, l2) {
         const n2 = l2 ? l2.val : 0;
         let sum = n1 + n2 + carry;
         let curVal = sum % 10;
-        //保持进位
+        //保存进位
         carry = Math.floor(sum / 10);
         //拼接节点
         cur.next = new ListNode(curVal)

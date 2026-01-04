@@ -75,13 +75,16 @@ var sortArray = function (nums) {
         }
     }
     let n = nums.length;
-    for (let l, m, r, step = 1; step < n; step <<= 1) {
-        l = 0;
+    // l|--step--|--step--|r
+    for (let step = 1; step < n; step <<= 1) {
+        let l = 0, m = 0, r = 0
         while (l < n) {
             m = l + step - 1
+            //说明 中间指针越界，无法再往后继续划分小块
             if (m + 1 >= n) {
                 break;
             }
+            // r可能越界，取数组最后一个位置。
             r = Math.min((l + (step << 1) - 1), n - 1)
             mergeArr(l, m, r);
             l = r + 1;
